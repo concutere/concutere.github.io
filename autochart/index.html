@@ -1,0 +1,279 @@
+<html>
+  <head>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.2/vega.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.0-rc3/vega-lite.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-beta.20/vega-embed.js"></script>
+      <script src="codes.js"></script>
+      <script src="fetch.js"></script>
+      <script src="uji.js"></script>
+      <style>
+      body {
+        background-color:aliceblue;
+        color:rgb(33,44,66);
+      }
+      * {
+        background-color:transparent;
+        font-family:Helvetica, Consolas, sans-serif;
+      }
+    </style>
+          <style>
+            hr {width:80%}
+            #toolbox {
+              position:absolute;
+              left: 0px;
+              top:0px;
+              width: 200px;
+              background-color:lightsteelblue;
+              color:darkslategray;
+              border-radius:0 0 5px 0 ;
+    
+              font-family:Helvetica, Consolas, sans-serif;
+              font-size:1em;
+              
+            }
+    
+            #toolbox-inner {
+              position:relative;
+            }
+    
+            #content{
+              position:absolute;
+              left:200px;
+              right:0px;
+              top:calc(50% + 50px);
+              height:calc(50% - 50px);
+              background-color:transparent;
+              display:flex;
+              flex-direction:row;
+              flex-wrap:wrap;
+              overflow-x:hidden;
+              overflow-y:auto;
+            }
+    
+            #content > * {
+              position: relative;
+            }
+    
+            #toolbuttons {
+              margin:1px;
+              padding:1px;
+            }
+    
+            #symbol {
+              max-width: 200px;
+              overflow: hidden;
+            }
+
+            td {
+              font-family:monospace;
+              font-size:1em;
+              padding: 0 1em 0 1em;
+              text-align:right;
+            }
+
+            th {
+              text-align:center;
+              margin:1em;
+            }
+
+            .unused {
+              color:white;
+              background-color:slategray;
+            }
+
+            .used {
+              position:relative;
+              border:1px dotted black;
+              border-radius:5px;
+            }
+
+            .unused > div {
+              visibility: collapse;
+            }
+
+            #colopts > div {
+              margin: 0 5px 0 5px;
+            }
+
+            #visbox { 
+              position: absolute;
+              left: 200px;
+              right:0;
+              top:100px;
+              height:calc(50% - 50px);
+              
+              overflow:hidden;
+            }
+
+            #stackbox {
+            	position:absolute;
+            	top:0;
+            	left:200px;
+            	bottom:100px;
+            	right:0;
+            	height:90px;
+            	background-color:lightsteelblue;
+            	overflow:hidden;
+            	display:grid;
+
+            	grid-auto-columns: 90px;
+            	grid-template-rows:90px;
+            	grid-gap: 0 10px;
+            	padding:5px;
+            }
+
+            #stackbox > div {
+            	position:relative;
+
+            	align-content: center;
+            	box-sizing: border-box;
+            	box-shadow:0 0 5px 1px steelblue, inset 0 0 5px -1px whitesmoke;
+            	grid-row:1;
+            	font-size:.8em;
+            	min-width:90px;
+            	max-width:200px;
+            	width:90px;
+            	padding:3px;
+
+            	text-overflow:ellipsis;
+            	text-align:center;
+            	font-weight:bold;
+
+            	padding-top:calc(50% - .5em);
+            }
+
+            #stackbox > div:active {
+            	background-color:whitesmoke;
+            	box-shadow:inset 0 0 5px 1px goldenrod;
+            }
+        </style>
+
+        <style>
+          #datebox {
+            position:relative;
+            display:grid;
+            grid-template-columns: auto 150px auto;
+            grid-template-rows: 10px 15px 10px;
+            width:170px;
+            height:33px;
+            margin: 0 15px 0 15px;
+          }
+          #datebox > * {
+            user-select:none;
+
+          }
+          #datebox > * > * {
+            position:relative;
+          }
+          #datebox-back {
+            grid-row:2;
+            grid-column:1;
+            cursor:pointer;
+          }
+          #datebox-next {
+            grid-row:2;
+            grid-column:3;
+            cursor:pointer;
+          }
+          #datebox-up {
+            grid-row:1;
+            grid-column:2;
+            cursor:pointer;
+          }
+          #datebox-down {
+            grid-row:3;
+            grid-column:2;
+            font-size:.8em;
+            cursor:pointer;
+          }
+          #datebox-date {
+            grid-row:2;
+            grid-column:2;
+
+            width:150px;
+            text-align:center;
+            font-size:.66em;
+            font-weight:bold;
+            cursor:default;
+            
+          }
+
+          #datebox > div > svg > polyline {
+            stroke: rgba(0,0,0,.5);
+            fill:transparent;
+          }
+          #datebox > div > svg > polyline:hover {
+            fill:whitesmoke;
+          }
+          #datebox > div > svg > polyline:active {
+            fill:goldenrod;
+          }
+        </style>
+
+        <style>
+          #chartopts {
+            display:grid;
+            grid-auto-columns:auto;
+            padding:5px
+          }
+          #chartopts > div {
+            padding:5px;
+            text-align:center;
+            font-size:.8em;
+            font-weight:bold;
+            box-shadow: inset 0 0 5px -1px black, 0 0 2px black;
+            margin:2px;
+            border-radius:2px;
+          }
+
+          #chartopts > div:active {
+            box-shadow: inset 0 0 5px  orangered, 0 0 2px black;
+          }
+
+          #chartopts > .on {
+            color:orangered;
+            text-shadow: 0 0 1em orangered;
+            box-shadow: inset 0 0 5px -1px orangered, 0 0 2px black;
+          }
+        </style>
+
+        </head>
+      
+        <body>
+          <div id="toolbox">
+            <div id="toolbox-inner">
+              <div id="toolbuttons">
+                <div id="symbol" nowrap contenteditable>AAPL AMZN GOOG MSFT</div>
+              </div>
+              <hr/>
+              <div id="datebox">
+                <div id="datebox-up"><svg width="150" height="10"><polyline points="1,9 75,1 149,9" /></svg></div>
+                <div id="datebox-back"><svg width="10" height="15"><polyline points="9,14 5,8 9,1" /></svg></div>
+                <div id="datebox-date">June 2017</div>
+                <div id="datebox-next"><svg width="10" height="15"><polyline points="1,14 4,8 1,1" /></svg></div>
+                <div id="datebox-down"><svg width="150" height="10"><polyline points="1,1 75,9 149,1"/></svg></div>
+              </div>
+              <hr/>
+              <div id="chartopts">
+                <div id="index">index</div>
+                <div id="log">log</div>
+                <div id="smooth">smooth</div>
+              </div>
+              <hr/>
+              <div id="colopts">
+              </div>
+            </div>
+          
+          </div>
+
+          <div id="stackbox">
+          </div>
+          <div id="visbox">
+          </div>
+          <div id="content">
+          </div>
+
+  </body>
+  <script src="toolbox.js"></script>
+ 
+</html>

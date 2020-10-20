@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+      Notice the use of  in the tag above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Concutere - Perceptually-Oriented Software</title>
+    <style type="text/css">
+        @import url(http://fonts.googleapis.com/css?family=Montserrat:900|Josefin+Sans:300);
+    </style>
+    <style type="text/css">
+        body {
+            /**/
+            font-size: 14pt;
+            font-family: 'Josefin Sans',sans-serif;
+            font-weight:300;
+            background-color: white;
+            color: black;
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+            height: 100%;
+        }
+
+        header, footer {
+            text-align: center;
+            font-size: 18pt;
+        }
+
+        header {
+            font-family: Montserrat,sans-serif;
+            font-weight: 900;
+        }
+
+            header > #title {
+                font-size: 72pt;
+                background-color: black;
+                color: white;
+            }
+
+        .item-block {
+            margin-left: 1.5em;
+        }
+
+
+
+        section {
+            background-color: white;
+            color: black;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 800px;
+        }
+
+
+
+        h4 {
+            width: 100%;
+            font-family: Montserrat,sans-serif;
+        }
+
+        section > h4 {
+            clear: both;
+            padding-top: 25px;
+            border-bottom: 1px solid lightgray;
+            color: lightgray;
+        }
+
+
+
+        .item {
+            margin: 25px 25px 50px;
+            min-height: 200px;
+            display: block;
+            padding: 25px 0;
+        }
+
+
+
+        .thumb {
+            float: left;
+            width: 200px;
+            margin-right: 15px;
+            border-radius: 25px;
+            box-shadow: 0px 2px 2px -1px lightslategray;
+        }
+
+        #subtitle {
+            font-size: 36pt;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div>
+            <header>
+                <div id="title">Concutere</div>
+                <div id="subtitle">perceptually-oriented software</div>
+            </header><div>
+                <section id="Vector Toys">
+                    <h4>Vector Toys</h4>
+                    <div class="item">
+                        <a href="muffin/bez.html"><img class="thumb" src="thumb/muffin.png" title="Bezier synth" alt="Bezier synth"></a><div>
+                            <h4>Bezier synth</h4><p style="font-size: 1.2em;">A Bezier-based tone / waveform editor</p><p class="item-block">
+                                This was by far the most fun prototype I've ever worked on. Though just a little prototype for a single UI/feature, I thought it simplified the connection between visual representation and manipulation of the actual audio data as processed by fourier transform-backed dsp systems.
+
+                            <p class="item-block">
+                                Ultimately I found that the only people who really appreciated it were people who had some sort of understanding of what a fourier transform was. In fairness though, my daughter also enjoyed playing with it quite a bit, and I now think it might have been better suited to help understanding how the fourier transform relates to tonality than as a main-usage sort of interface.
+                            </p>
+                            <p class="item-block">This project used to work with the web MIDI API but in the interest of a demoable presentation it just drones by default now. The MIDI may still work but it hasn't been tested in years.</p>
+                            <p class="item-block">
+                                Partial list of commands:
+                                <ul style="font-size:.8em; margin-left:1em;">
+                                    <li>Click and drag control points to shape the waveform (constrained to up/down).</li>
+                                    <li>Double-click on a control point to delete it.</li>
+                                    <li>Double-click to add a control point.</li>
+                                    <li><u>A</u> toggles the ASDR curve (Attack Sustain Delay Release).</li>
+                                    <li><u>S</u> transforms the waveform for a smoothing effect by removing every other point (need >8 points).</li>
+                                    <li><u>shift-S</u> transforms the waveform for a jagged/noisy effect by inserting points at opposing slope to those they bisect.</li>
+                                </ul>
+                            </p>
+                        </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="splash/index.html"><img class="thumb" src="thumb/splash.png" title="Splash" alt="Splash"></a><div>
+                            <h4>Splash</h4><p style="font-size: 1.2em;">Minimal vector path editor</p><p class="item-block">
+                                An experiment in vector path editing with control points on the line. A bit of an accumulation of vector tooling ideas and code I had from earlier prototypes. In retrospect I wish I had built this as a self-contained library and not a react app. These days I'd just use Figma.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="sigil/index.html"><img class="thumb" src="thumb/sigil.png" title="Sigil" alt="Sigil"></a><div>
+                            <h4>Sigil</h4><p style="font-size: 1.2em;">Font editor of desire</p><p class="item-block">
+                                A creative play on font-editing functionality. Technique aside, this experiment would have been more entertaining with more sophisticated editing features, being able to morph clusters of points in more varied ways than simple select & drag interactions. As it is it demonstrates some crude region-select functionality.</p>
+                                <p class="item-block">The result tends to be a jumbled mess, may your sensibilities be forewarned.
+                            </p>
+                        </div>
+                    </div>
+
+
+                </section>
+                <section id="Charting">
+                    <h4>Charting</h4>
+                    <div class="item"><a href="sg/sg.html"><img class="thumb" src="thumb/sg.png" title="SG.js" alt="SG.js"></a><div><h4>SG.js</h4><p style="font-size: 1.2em;">Dependency-free SVG slopegraph library</p>
+                    <p class="item-block">Edward Tufte recognized this work with kind words (though misattributed as Ben Concutere) at <a href="https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0003nk">https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0003nk</a>.</p></div></div>
+                    <div class="item"><a href="uji/index.html"><img class="thumb" src="thumb/uji.png" title="Uji" alt="Uji"></a><div>
+                            <h4>Uji</h4><p style="font-size: 1.2em;">An experiment in comparative averagings</p><p class="item-block">
+                                Intended as a collection of ways to display changes over time, this provides step-by-step thumbnails of how the data changes (differential regions highlighted in red/green) at each step of transformation(s) the user selects from available smoothing options. Part of the original design goal that never got implemented was to provide an ability to fork the progress of a transition-stack and compare differing analyses or datasets. 
+                            </p>
+                            <p class="item-block">Problems finding reliably free data sources led to changing the default UI for this to use a browse button instead of a stock symbol search field, though only the bare minimum of CSV support has been added (as expected data is only a date field and a single numeric field further parsing shouldn't be required, though in practice data is rarely so focused & clean). In the interest of a demoable presentation the link may have some fixed dataset load by default.</p>
+                        </div>
+                    </div>
+                    <div class="item"><a href="autochart/index.html"><img class="thumb" src="thumb/autochart.png" title="Autochart" alt="Autochart"></a><div>
+                        <h4>Autochart</h4><p style="font-size: 1.2em;">Stock charting with basic smoothing options</p><p class="item-block">
+                            This was an earlier experiment in charting and representing data transformations that led to Uji. Note that the available data stops somewhere in 2018.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            </div><footer><a href="https://github.com/concutere">github</a></footer>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+  <head>
+  <title> sigil.js | desire manifest in font-wizardry </title>
+    <script src="opentype.js"></script> 
+    <style>
+    	html, body { margin:0; padding:0; overflow:hidden }
+			svg { position:fixed; top:0; bottom:0; left:0; right:0; width:100%; height:100%; }
+			.hide { visibility:hidden;}
+			.show { visibility:visible;}
+		</style>
+  </head>
+
+  <body>
+    <!--canvas id=canvas width="600" height="400" style="position:absolute;width:600px;height:400px;background-color:black;padding:0px;margin:10px"></canvas-->
+    <svg id=svg style="background-color:black;">
+    	<g id="gPath"></g>
+    	<g id="gCtls"></g>
+    	<rect id="selection" class="hide" style="stroke:#fc6;fill:#fc6;fill-opacity:.5;"></rect>
+    </svg>
+  </body>
+    <script src="sigil.js"></script>
+</html>
